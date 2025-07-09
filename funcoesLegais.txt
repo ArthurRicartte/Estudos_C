@@ -1,0 +1,17 @@
+int Mdc(int a, int b){
+
+    if (a <  0){
+        a = -a;
+    }
+
+    if (b < 0){
+        b = -b;
+    }
+
+    if (a % b == 0) {
+        return b;
+    } else{
+        return Mdc(b, a%b);
+    }
+    
+}
