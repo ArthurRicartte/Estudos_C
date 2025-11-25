@@ -1,35 +1,29 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<math.h>
 
-int Verifica(float a, float b, float c){
+void contPar(int vetor[], int size){
 
-    if (a + b > c){
-        if (b + c > a){
-            if (a + c > b){
-                return 1;       
-            }
-        }
+    int cont = 1;
+    for (int i = 0; i < size / 2; i++){
+        int temp = vetor[i];
+        vetor[i] = vetor[size - cont];
+        vetor[size - cont] = temp;
+
+        cont++;
     }
 
-    return 0;
+    for(int i = 0; i < size; i++){
+        printf("%d\n", vetor[i]);
+    }
 }
 
 
 int main (void){
 
-    float a, b, c;
-    float result;
+    int numeros[] = {1,2,3,4,5};
 
-    scanf("%f %f %f", &a, &b, &c);
     
-    int ehTriangulo = Verifica(a, b, c);
-
-    if (ehTriangulo){
-        result = a + b + c;
-        printf("Perimetro = %.1f\n", result);
-    } else{
-        result = ((a + b)* c)/ 2;
-        printf("Area = %.1f\n", result);
-    }
-        
+    contPar(numeros, 5);
+    
     return 0;
 }
