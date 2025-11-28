@@ -1,3 +1,12 @@
+/*Escreva uma função que receba um vetor de números reais e tenha como
+valor de retorno um novo vetor, alocado dinamicamente, com os elementos
+do vetor original em ordem reversa. A função deve ter como valor de retorno
+o ponteiro do vetor alocado, seguindo o protótipo:
+float * reverso (int n, float * v);
+Faça uma função main para testar sua função. Na função main, não esqueça
+de liberar a memória alocada pela função auxiliar.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
