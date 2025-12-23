@@ -14,7 +14,7 @@ int main(void){
     }
 
     //Criando um vetor e variaveis axuliares
-    Vetor* vet = vet_cria();
+    Vetor* vetor = vet_cria();
     Aluno temp;
     char linha[81];
 
@@ -32,7 +32,7 @@ int main(void){
 
         //Lendo as tres linhas e armazenando em temp
         sscanf(linha, "%f %f %f", &temp.p1, &temp.p2, &temp.p3);
-        vet_adiciona(vet, &temp);
+        vet_adiciona(vetor, &temp);
     }
 
     //fechar arquivo:
@@ -40,12 +40,12 @@ int main(void){
 
     //Exibir dados:
     printf("Alunos cadastrados:\n");
-    for(int i = 0; i < vet_tamanho(vet); i++){
-        Aluno* a = vet_acessa(vet, i);
+    for(int i = 0; i < vet_tamanho(vetor); i++){
+        Aluno* a = vet_acessa(vetor, i);
         printf("%s: %.1f %.1f %.1f\n", a -> nome, a -> p1, a -> p2, a -> p3);
     }
 
     //Liberar vet da memoria:
-    vet_libera(vet);
+    vet_libera(vetor);
     return 0;   
 }
