@@ -9,6 +9,11 @@ struct aluno {
 };
 
 typedef struct vetor Vetor;
+struct vetor{
+    Aluno** alunos;
+    int cadastrados;
+    int limite;
+};
 
 // Cria um vetor vazio
 Vetor* vet_cria(void);
@@ -18,6 +23,18 @@ void vet_libera(Vetor* v);
 
 // Adiciona um aluno ao final do vetor (copia os dados)
 void vet_adiciona(Vetor* v, Aluno* a);
+
+//Redimensiona o vetor de alunos
+void vet_redimensiona(Vetor* v);
+
+//Redimensiona o vetor de alunos pelo numero exato:
+void vet_redimensiona_exato(Vetor* v);
+
+//Remove aluno por indice:
+void vet_remove(Vetor* v, int i);
+
+//Remove aluno por nome:
+int vet_remove_nome(Vetor* v, const char* nome);
 
 // Retorna o número de alunos no vetor
 int vet_tamanho(Vetor* v);
