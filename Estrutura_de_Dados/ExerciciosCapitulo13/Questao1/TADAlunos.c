@@ -1,4 +1,3 @@
-// main.c - Versão Aprimorada para Testes
 #include "Alunos.h"
 #include <stdio.h>
 #include <stdlib.h>
