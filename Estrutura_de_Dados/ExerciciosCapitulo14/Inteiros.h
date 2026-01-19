@@ -33,4 +33,16 @@ int ultimo (ListaInt* l);
 //Questao 4: concatena 2 listas:
 void concatena (ListaInt* l1 , ListaInt* l2 );
 
+//Questao 5: retira as ocorrencias de um valor x na lista:
+void retira_n (ListaInt* l, int x);
+
+//Questaoo 6: separa a lista em duas a partir de um valor x:
+ListaInt* separa (ListaInt* l, int x);
+
+//Questao 7: Intercalar os valores de duas listas em uma terceira lista:
+ListaInt* merge (ListaInt* l1 , ListaInt* l2 );
+
+//Questao 8: Inverter a lista:
+void inverte (ListaInt* l);
+
 #endif

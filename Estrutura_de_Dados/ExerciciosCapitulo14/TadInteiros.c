@@ -18,7 +18,7 @@ int main(void){
     //Testando funcoes:
     printf("\nComprimento lista1 = %d nos\n", comprimento(lista1));
     printf("Nos de lista1 maiores que 2 = %d nos\n", maiores(lista1, 2));
-    printf("Ultimo no de lista1 = %d\n\n", ultimo(lista1));
+    printf("Ultimo no de lista1 = %d\n", ultimo(lista1));
     
     //Criando segunda lista:
     ListaInt* lista2 = cria_list();
@@ -30,7 +30,7 @@ int main(void){
     insere_inicio(5, lista2);
 
     //Exibindo:
-    printf("Lista 2:\n");
+    printf("\nLista 2:\n");
     exibirLista(lista2);
     printf("\n");
 
@@ -40,10 +40,78 @@ int main(void){
     //Exibindo lista concatenada:
     printf("Lista 1 + Lista 2:\n");
     exibirLista(lista1);
-    
+
+    //Criando segunda lista:
+    ListaInt* lista3 = cria_list();
+
+    //Add Inteiros:
+    insere_inicio(12, lista3);
+    insere_inicio(11, lista3);
+    insere_inicio(10, lista3);
+    insere_inicio(9, lista3);
+
+    //Exibindo:
+    printf("\nLista 3:\n");
+    exibirLista(lista3);
+    printf("\n");
+
+    //Retirando o numero 11 da lista3:
+    retira_n(lista3, 11);
+    printf("Lista 3 apos retirar o numero 11:\n");
+    exibirLista(lista3);
+
+    //Separando a lista3 a partir do numero 10:
+    ListaInt* lista4 = separa(lista3, 10);
+    printf("\nLista 3 apos separar a partir do numero 10:\n");
+    exibirLista(lista3);
+
+    //Criando quinta lista:
+    ListaInt* lista5 = cria_list();
+
+    //Add Inteiros:
+    insere_inicio(16, lista5);
+    insere_inicio(15, lista5);
+    insere_inicio(14, lista5);
+    insere_inicio(13, lista5);
+
+    //Exibindo:
+    printf("\nLista 5:\n");
+    exibirLista(lista5);
+
+    //Criando sexta lista:
+    ListaInt* lista6 = cria_list();
+
+    //Add Inteiros:
+    insere_inicio(20, lista6);
+    insere_inicio(19, lista6);
+    insere_inicio(18, lista6);
+    insere_inicio(17, lista6);
+
+    //Exibindo:
+    printf("\nLista 6:\n");
+    exibirLista(lista6);
+    printf("\n");
+
+    //Intercalando lista5 e lista6:
+    ListaInt* lista7 = merge(lista5, lista6);
+    printf("Lista 5 e Lista 6 intercaladas:\n");
+    exibirLista(lista7);
+    printf("\n");
+
+    //Inverter lista7:
+    inverte(lista7);
+    printf("Lista 7 invertida:\n");
+    exibirLista(lista7);
+    printf("\n");
+
     //Liberando listas:
     libera(lista1);
     libera(lista2);
+    libera(lista3);
+    libera(lista4);
+    libera(lista5);
+    libera(lista6);
+    libera(lista7);
 
     return 0;
 }

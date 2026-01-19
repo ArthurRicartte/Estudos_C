@@ -216,3 +216,207 @@ void concatena (ListaInt* l1 , ListaInt* l2 ){
     atual -> prox = l2 -> cabeca;
     l2 -> cabeca = NULL;
 }
+
+//Questao 5: retira as ocorrencias de um valor x na lista:
+void retira_n (ListaInt* l, int x){
+    //verifica se a lista eh vazia:
+    if (!l){
+        printf("ERRO: PONTEIRO DE LISTA INVALIDO (7)\n");
+        return;
+    }
+
+    //Criando variaveis auxiliares:
+    Inteiro* atual = l -> cabeca;
+    Inteiro* ant = NULL;
+    Inteiro* aux = NULL;
+
+    //Percorrendo a lista:
+    while (atual != NULL){
+
+        //Verificando se o atual deve ser removido:
+        if (atual -> info == x){
+           
+            //Guardando o no a ser removido:
+            aux = atual;
+
+            if (ant == NULL){    //Caso seja a cabeca:
+                l -> cabeca = atual -> prox;
+            }else{   //Caso nao seja a cabeca:
+                ant -> prox = atual -> prox;
+            }
+
+            //Removendo o no:
+            atual = atual -> prox;
+            free(aux);
+
+        }else{
+            //Caso nao seja um valor a ser removido, avanca os ponteiros:
+            ant = atual;
+            atual = atual -> prox;
+        }
+    }
+}
+
+//Questaoo 6: separa a lista em duas a partir de um valor x:
+ListaInt* separa (ListaInt* l, int x){
+    //Verificando se a lista eh valida://verifica se a lista eh vazia:
+    if (!l){
+        printf("ERRO: PONTEIRO DE LISTA INVALIDO (8)\n");
+        return NULL;
+    }
+
+    //Criando variaveis auxiliares:
+    Inteiro* atual = l -> cabeca;
+    Inteiro* ant = NULL;
+
+    //Percorrendo a lista:
+    while (atual != NULL && atual -> info != x){
+        ant = atual;
+        atual = atual -> prox;
+    }
+
+    //Verificando se encontrou o valor x:
+    if (atual == NULL){
+        //Caso nao encontre, retorna lista vazia:
+        return cria_list();
+    }
+
+    //Criando nova lista:
+    ListaInt* novaLista = cria_list();
+    if (!novaLista){
+        printf("ERROR: FALHA AO ALOCAR MEMORIA PARA NOVA LISTA (9)\n");
+        return NULL;
+    }
+
+    //Nova lista comeca no sucessor do atual:
+    novaLista -> cabeca = atual -> prox;
+
+    //A lista original termina no atual:
+    atual -> prox = NULL;
+
+    //Retornando a nova lista:
+    return novaLista;
+}
+
+//Questao 7: Intercalar os valores de duas listas em uma terceira lista:
+ListaInt* merge (ListaInt* l1 , ListaInt* l2 ){
+    //Verificando se as listas sao validas:
+    if (!l1 || !l2){
+        printf("ERRO: PONTEIRO DE LISTA INVALIDO (8)\n");
+        return NULL;
+    }
+
+    //Criando a nova lista:
+    ListaInt* novaLista = cria_list();
+
+    //Verificando se a nova lista foi criada:
+    if (!novaLista){
+        printf("ERRO: FALHA AO ALOCAR MEMORIA PARA NOVA LISTA (9)\n");
+        return NULL;
+    }
+
+    //Criando ponteiros auxiliares:
+    Inteiro* atual1 = l1 -> cabeca;
+    Inteiro* atual2 = l2 -> cabeca;
+    Inteiro* ultimo = NULL;
+
+    //Percorrendo ambas listas:
+    while (atual1 != NULL || atual2 != NULL){
+        //Se ainda houver elementos em l1, adiciona uma copia:
+        if (atual1 != NULL){
+            //Tentando alocar memoria:
+            Inteiro* novo = (Inteiro*) malloc (sizeof(Inteiro));
+
+            //Verificando se alocacao deu certo:
+            if (!novo){
+                printf("ERRO: FALHA AO ALOCAR MEMORIA PARA NOVO NO (10)\n");
+                libera(novaLista);
+                return NULL;
+            }
+
+            //Alocacao deu certo, preenchendo o novo no:
+            novo -> info = atual1 -> info;
+            novo -> prox = NULL;
+
+            //Verificando se eh o primeiro no da nova lista:
+            if (novaLista -> cabeca == NULL){
+                novaLista -> cabeca = novo;
+            }else{
+                ultimo -> prox = novo;
+            }
+
+            //Atualizando o ultimo no:
+            ultimo = novo;
+            atual1 = atual1 -> prox;
+        }
+
+        //Se ainda houver elementos em l2, adiciona uma copia:
+        if (atual2 != NULL){
+            Inteiro* novo = (Inteiro*) malloc (sizeof(Inteiro));
+
+            //Verificando se alocacao deu certo:
+            if (!novo){
+                printf("ERRO: FALHA AO ALOCAR MEMORIA PARA NOVO NO (11)\n");
+                libera(novaLista);
+                return NULL;
+            }
+
+            //Alocacao deu certo, preenchendo o novo no:
+            novo -> info = atual2 -> info;
+            novo -> prox = NULL;
+
+            //Aqui adiciona a nova lista:
+            if (novaLista -> cabeca == NULL){
+                novaLista -> cabeca = novo;
+            }else{
+                ultimo -> prox = novo;
+            }
+
+            //Atualizando o ultimo no:
+            ultimo = novo;
+            atual2 = atual2 -> prox;
+        }
+    }
+
+    /*OBSERVACAO: A logica dessa funcao eh basicamente a mesma quando vc tenta alterar 
+    a cabeca de uma lista, nesse caso a gente vai mudando o ultimo valor 
+    (Faz ele apontar para o novo No criado).*/
+    
+    //Retornando a nova lista:
+    return novaLista;
+}
+
+//Questao 8: Inverter a lista:
+void inverte (ListaInt* l){
+    //Verificando se a lista eh valida:
+    if (!l){
+        printf("ERRO: PONTEIRO DE LISTA INVALIDO (12)\n");
+        return;
+    }
+
+    //Verificando se a lista eh vazia ou tem um unico elemento:
+    if (l -> cabeca == NULL || l -> cabeca -> prox == NULL){
+        return; //Nada a fazer
+    }
+
+    //Inicializando ponteiros auxiliares:
+    Inteiro* ant = NULL;
+    Inteiro* atual = l -> cabeca;
+    Inteiro* proximo = NULL;
+  
+    //Percorrendo a lista:
+    while (atual != NULL){
+        //Guarda o proximo no:
+        proximo = atual -> prox;
+
+        //Inverte o ponteiro do no atual:
+        atual -> prox = ant;
+
+        //Muda a refrencia de anterior e proximo:
+        ant = atual;
+        atual = proximo;
+    }
+
+    //Atualiza a cabeca da lista:
+    l -> cabeca = ant;
+}
