@@ -41,7 +41,7 @@ int main(void){
     printf("Lista 1 + Lista 2:\n");
     exibirLista(lista1);
 
-    //Criando segunda lista:
+    //Criando terceira lista:
     ListaInt* lista3 = cria_list();
 
     //Add Inteiros:
