@@ -420,3 +420,211 @@ void inverte (ListaInt* l){
     //Atualiza a cabeca da lista:
     l -> cabeca = ant;
 }
+
+//Questao 9: Fazer uma copia da lista (De forma iterativa):
+ListaInt* copiaIterativa (ListaInt* l){
+    //Verificando se a lista eh valida:
+    if (!l){
+        printf("ERRO: PONTEIRO DE LISTA INVALIDO (13)\n");
+        return NULL;
+    }
+
+    //Criando a nova lista:
+    ListaInt* novaLista = cria_list();
+
+    //Verificando se a nova lista foi criada:
+    if (!novaLista){
+        printf("ERRO: FALHA AO ALOCAR MEMORIA PARA NOVA LISTA (14)\n");
+        return NULL;
+    }
+
+
+    //Caso a lista original esteja vazia:
+    if (l -> cabeca == NULL){
+        return novaLista;
+    }
+
+    //Criando variaveis auxiliares:
+    Inteiro* atual_orig = l -> cabeca;
+    Inteiro** atual_copia = &(novaLista -> cabeca);
+
+    
+    //Percorrendo a lista original:
+    while (atual_orig != NULL){
+        //Criando um novo no:
+        Inteiro* novo = (Inteiro*) malloc (sizeof(Inteiro));
+
+        //Verificando se funcionou:
+        if (!novo){
+            printf("ERRO: FALHA AO ALOCAR MEMORIA PARA NOVO NO (15)\n");
+            libera(novaLista);
+            return NULL;
+        }
+
+        //Copiando o valor:
+        novo -> info = atual_orig -> info;
+        novo -> prox = NULL;
+
+        //Conectando o novo no na copia:
+        *atual_copia = novo;
+        atual_copia = &(novo -> prox);
+
+        //Passando adiante:
+        atual_orig = atual_orig -> prox;
+    }
+
+    //Retornando a nova lista:
+    return novaLista;
+}
+
+//Questão 9: Fazer uma copia da lista (De forma recursiva):
+ListaInt* copiaRecursiva (ListaInt* l){
+    //Verificando se a lista eh valida:
+    if (!l){
+        printf("ERRO: PONTEIRO DE LISTA INVALIDO (16)\n");
+        return NULL;
+    }
+
+    //Verificando se a lista eh vazia:
+    if (l -> cabeca == NULL){
+        return cria_list();
+    }
+
+    //Criando nova lista:
+    ListaInt* novaLista = cria_list();
+
+    //Verificando se a nova lista foi criada:
+    if (!novaLista){
+        printf("ERRO: FALHA AO ALOCAR MEMORIA PARA NOVA LISTA (17)\n");
+        return NULL;
+    }
+
+    //Copia o no de forma recursiva:
+    novaLista -> cabeca = copiaNoRecursivo(l -> cabeca);
+
+    //Retorna a nova lista copiada:
+    return novaLista;
+}
+
+
+//Funcao que vai auxilar na copia recursiva:
+Inteiro* copiaNoRecursivo (Inteiro* no_Orig){
+    //Verificando se o no eh nulo:
+    if (!no_Orig){
+        return NULL;
+    }
+
+    //Criando novo no:
+    Inteiro* novo = (Inteiro*) malloc (sizeof(Inteiro));
+
+    //Verificando se a alocacao deu certo:
+    if (!novo){
+        printf("ERRO: FALHA AO ALOCAR MEMORIA PARA NOVO NO (18)\n");
+        return NULL;
+    }
+
+    //Copiando a informacao:
+    novo -> info = no_Orig -> info;
+
+    //Chamando a funcao recursivamente para o proximo no:
+    novo -> prox = copiaNoRecursivo(no_Orig -> prox);
+
+    //Retornando o novo no:
+    return novo;
+}
+
+//Questao 10: Transforma lista simplimente encadeada em lista circular:
+void para_circular (ListaInt* l){
+    //Verificando se a lista eh valida:
+    if (!l){
+        printf("ERRO: PONTEIRO DE LISTA INVALIDO (19)\n");
+        return;
+    }
+
+    //Verificando se a lista eh vazia:
+    if (l -> cabeca == NULL){
+        return; //Nada a fazer
+    }
+
+    //Criando variavel auxiliar:
+    Inteiro* atual = l -> cabeca;
+
+    //Percorrendo a lista:
+    while (atual -> prox != NULL){
+        atual = atual -> prox;
+    }
+
+    //Fazendo o ultimo no apontar para a cabeca:
+    atual -> prox = l -> cabeca;
+}
+
+//Funcao auxilar da questao 10: Exibir lista circular:
+void exibirListaCircular(ListaInt* lista){
+    //Verificar se a lista eh valida:
+    if (!lista){
+        printf("ERRO: PONTEIRO DE LISTA INVALIDO (20)\n");
+        return;
+    }
+
+    //Verificando se a lista eh vazia:
+    if (lista -> cabeca == NULL){
+        printf("Lista vazia\n");
+        return;
+    }
+
+    //Criando variavel auxiliar:
+    Inteiro* atual = lista -> cabeca;
+    int cont = 0;
+
+    //Percorrendo a lista circular:
+    while (1){
+        printf("No %d || Valor: %d", cont, atual -> info);
+
+        //Determinando a info do prox:
+        if (atual -> prox != NULL){
+            printf(" || Prox: %d\n", atual -> prox -> info);
+        }else{
+            printf(" || Prox: NULL\n");
+            break;  //Deu erro: lista circular mal feita
+        }
+
+        //Proximo no:
+        atual = atual -> prox;
+        cont++;
+
+        //Verifcando se voltou a cabeca:
+        if (atual == lista -> cabeca){
+            break;
+        }
+    }
+}
+
+//Funcao auxilar da questao 10: Liberar lista circular:
+void liberaCircular(ListaInt* lista){
+    //Verificar se a lista eh valida:
+    if (!lista){
+        printf("ERRO: PONTEIRO DE LISTA INVALIDO (21)\n");
+        return;
+    }
+
+    //Verificando se a lista eh vazia:
+    if (lista -> cabeca == NULL){
+        free(lista);
+        return;
+    }
+
+    //Criando variavel auxiliar:
+    Inteiro* atual = lista -> cabeca;
+    Inteiro* primeiro = lista -> cabeca;
+    Inteiro* aux = NULL;
+
+    //Percorrendo a lista circular:
+    do {
+        aux = atual;
+        atual = atual -> prox;
+        free(aux);
+    }while (atual != NULL && atual != primeiro);
+
+    //Liberando a estrutura da lista:
+    free(lista);
+}

@@ -104,14 +104,35 @@ int main(void){
     exibirLista(lista7);
     printf("\n");
 
+
+    //Fazendo copia iterativa de lista1:
+    ListaInt* lista8 = copiaIterativa(lista1);
+    printf("Copia iterativa de lista1:\n");
+    exibirLista(lista8);
+    printf("\n");
+
+    //Fazendo copia recursiva de lista7:
+    ListaInt* lista9 = copiaRecursiva(lista7);
+    printf("Copia recursiva de lista7:\n");
+    exibirLista(lista9);
+    printf("\n");
+
+    //Transformando lista1 em circular:
+    para_circular(lista1);
+    printf("Lista1 transformada em circular:\n");
+    exibirListaCircular(lista1);
+    printf("\n");
+
     //Liberando listas:
-    libera(lista1);
+    liberaCircular(lista1); //Passou a ser uma lista circular
     libera(lista2);
     libera(lista3);
     libera(lista4);
     libera(lista5);
     libera(lista6);
     libera(lista7);
+    libera(lista8);
+    libera(lista9);
 
     return 0;
 }

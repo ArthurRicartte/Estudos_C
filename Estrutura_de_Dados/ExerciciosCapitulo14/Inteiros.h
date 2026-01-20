@@ -45,4 +45,22 @@ ListaInt* merge (ListaInt* l1 , ListaInt* l2 );
 //Questao 8: Inverter a lista:
 void inverte (ListaInt* l);
 
+//Questao 9: Fazer uma copia da lista:
+ListaInt* copiaIterativa (ListaInt* l);
+
+//Questão 9: Fazer uma copia da lista (De forma recursiva):
+ListaInt* copiaRecursiva (ListaInt* l);
+
+//Funcao que vai auxilar na copia recursiva:
+Inteiro* copiaNoRecursivo (Inteiro* no_Orig);
+
+//Questao 10: Transforma lista simplimente encadeada em lista circular:
+void para_circular (ListaInt* l);
+
+//Funcao auxilar da questao 10: Exibir lista circular:
+void exibirListaCircular(ListaInt* lista);
+
+//Funcao auxilar da questao 10: Liberar lista circular:
+void liberaCircular(ListaInt* lista);
+
 #endif
