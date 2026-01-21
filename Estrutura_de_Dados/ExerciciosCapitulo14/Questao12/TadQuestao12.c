@@ -27,6 +27,6 @@ int main(void){
     
     //Liberando memoria:
     lst_libera(l);
-    
+ 
     return 0;
 }
