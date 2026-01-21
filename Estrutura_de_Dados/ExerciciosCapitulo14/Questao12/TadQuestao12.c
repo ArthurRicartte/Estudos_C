@@ -25,5 +25,8 @@ int main(void){
     printf("\nDepois de retirar do final:\n");
     lst_imprime(l);
     
+    //Liberando memoria:
+    lst_libera(l);
+    
     return 0;
 }
