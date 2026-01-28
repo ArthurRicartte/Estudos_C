@@ -10,7 +10,8 @@ void vet_imprime_info(Vetor* vet) {
         return;
     }
     printf("Tamanho: %d | Capacidade: %d\n", 
-           vet_tamanho(vet), vet->limite);
+           vet_tamanho(vet), vet->limite);   //Quando vc deseja acessar um campo da struct de forma direta, 
+                                            //eh interessante ter toda a struct defininida no .h
 }
 
 // Função para criar arquivo de exemplo se não existir

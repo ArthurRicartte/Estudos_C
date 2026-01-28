@@ -132,9 +132,12 @@ void vet_remove(Vetor* v, int i){
     free(v -> alunos[i]);
 
     //Deslocando elementos para preencher o espaco vazio:
-    for (int j = 0; j < v -> cadastrados - 1; j++){
+    for (int j = i; j < v -> cadastrados - 1; j++){
         v -> alunos[j] = v -> alunos[j + 1];
     }
+
+    //Limpando o ultimo ponteiro (opcional):
+    v -> alunos[v -> cadastrados - 1] = NULL;
     
     //Decrementando o numero de cadastrados:
     v -> cadastrados--;
