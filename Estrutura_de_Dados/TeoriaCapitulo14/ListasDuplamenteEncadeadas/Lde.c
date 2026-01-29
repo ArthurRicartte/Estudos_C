@@ -154,8 +154,7 @@ void lst_insere_ordenado (Lista* l, int v){
     //Determinando a posicao correta para inserir no meio::
     ListaNo* atual = l -> primeiro;
 
-    while (atual != NULL && atual -> valor < v){
-        
+    while (atual != NULL && atual -> valor < v){ 
         atual = atual -> prox;
     }
        

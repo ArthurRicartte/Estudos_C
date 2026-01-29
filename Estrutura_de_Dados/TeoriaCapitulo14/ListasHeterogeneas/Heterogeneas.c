@@ -194,7 +194,7 @@ int remove_no(ListaHet* lista, ListaNoHet* no){
     }
 
     //Caso 1: remover a cabeca:
-    if (no -> info == lista -> cabeca){
+    if (no == lista -> cabeca){
         lista -> cabeca = no -> prox;
         libera_no(no);
         return 1; //sucesso!
