@@ -4,7 +4,7 @@
 
 //Definindo as estruturas:
 
-struct lista{
+struct listaNo{
     ListaNo* primeiro;
 };
 

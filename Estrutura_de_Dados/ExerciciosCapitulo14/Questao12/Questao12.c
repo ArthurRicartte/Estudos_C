@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 //Criando as estruturas:
-struct lista{
+struct listaNo{
     ListaNo* primeiro;
     ListaNo* ultimo;
 };

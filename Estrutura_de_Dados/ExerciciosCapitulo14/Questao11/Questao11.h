@@ -5,7 +5,7 @@ Vou deixar so as funcoes bascias do tad e adicionar as funcoes que a questao ped
 #define QUESTAO11_H
 
 //Definindo as estruturas necessarias:
-typedef struct lista Lista;
+typedef struct listaNo Lista;
 
 typedef struct listano ListaNo; //No propiamente dito
 

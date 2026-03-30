@@ -5,7 +5,7 @@ entao aproveitei o codigo ja feito para listas circulares:*/
 #define QUESTAO12_H
 
 //Definindo as estruturas necessarias:
-typedef struct lista Lista;
+typedef struct listaNo Lista;
 
 typedef struct listano ListaNo; //No propiamente dito
 

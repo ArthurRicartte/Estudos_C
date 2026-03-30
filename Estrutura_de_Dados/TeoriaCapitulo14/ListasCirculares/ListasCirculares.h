@@ -2,7 +2,7 @@
 #define LISTAS_CIRCULARES_H
 
 //Definindo as estruturas necessarias:
-typedef struct lista Lista;
+typedef struct listaNo Lista;
 
 typedef struct listano ListaNo; //No propiamente dito
 
